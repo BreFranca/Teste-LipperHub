@@ -10,6 +10,10 @@ var config = {
 };
 firebase.initializeApp(config);
 
+$(window).on('load', function(){
+	$('#loader').fadeOut('slow');
+});
+
 $('.btn-mobile').click(function(event) {
 	$(this).toggleClass('active');
 	$('header nav').slideToggle();
