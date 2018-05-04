@@ -13,11 +13,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
-//Escutando status do Firebase
+body = document.querySelector('body');
 usuario = document.querySelector('#usuario');
 login = document.querySelector('#form-login');
 register = document.querySelector('#form-register');
 
+//Escutando status do Firebase
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		login.classList.remove('active');
@@ -34,6 +35,7 @@ firebase.auth().onAuthStateChanged(function(user) {
  * -------------------------------------------------------- */
 window.onload = function() {
 	document.querySelector('#loader').classList.add('hidden');
+	body.classList.add('loaded');
 };
 
 /*
@@ -76,7 +78,6 @@ function closeNav() {
 /*
  * FIXED MENU
  * -------------------------------------------------------- */
-body = document.querySelector('body');
 window.addEventListener('scroll', function() {
 	var element = document.querySelector("html");
 	var scroll = element.scrollTop;
