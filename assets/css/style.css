@@ -1,0 +1,899 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+/*
+ * RESET CSS
+ * -------------------------------------------------------- */
+* {
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+}
+
+html, body {
+	height: 100%;
+}
+
+
+/*
+ * GENERAL CSS
+ * -------------------------------------------------------- */
+body {
+	font-size: 18px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+	max-width: 1352px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+body.fixed-menu header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 11;
+	width: 100%;
+}
+
+body.fixed-menu #banner {
+	margin-bottom: 50px;
+}
+
+
+/*
+ * BANNER
+ * -------------------------------------------------------- */
+#banner {
+	height: 662px;
+	background: url('../img/banner.jpg') center top no-repeat;
+	background-size: auto 100%;
+}
+
+#banner .container {
+	height: 100%;
+	position: relative;
+}
+
+#banner .language {
+	position: absolute;
+	top: 17px;
+	left: 20px;
+}
+
+#banner .language ul li {
+	display: inline-block;
+	margin-right: 8px;
+}
+
+#banner .language ul li:last-child {
+	margin-right: 0;
+}
+
+#banner .language ul li a {
+	display: block;
+	width: 27px;
+	height: 27px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	transition: .4s all linear;
+}
+
+#banner .language ul li a.pt-br {
+	background-image: url('../img/language/portuguese-out.png');
+}
+
+#banner .language ul li a.pt-br.active,
+#banner .language ul li a.pt-br:hover {
+	background-image: url('../img/language/portuguese.png');
+}
+
+#banner .language ul li a.en-us {
+	background-image: url('../img/language/english-out.png');
+}
+
+#banner .language ul li a.en-us.active,
+#banner .language ul li a.en-us:hover {
+	background-image: url('../img/language/english.png');
+}
+
+#banner .language ul li a.es-es {
+	background-image: url('../img/language/spanish-out.png');
+}
+
+#banner .language ul li a.es-es.active,
+#banner .language ul li a.es-es:hover {
+	background-image: url('../img/language/spanish.png');
+}
+
+#banner .login {
+	box-shadow: 0 0 27px rgba(0, 0, 0, .3);
+	max-width: 370px;
+	border-radius: 30px;
+	position: absolute;
+	top: 50%;
+	right: 25px;
+	transform: translateY(-50%);
+	padding: 20px 15px;
+}
+
+#banner .login .icon {
+	width: 24px;
+	height: 25px;
+	display: inline-block;
+	vertical-align: middle;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#banner .login .icon.lock {
+	background-image: url('../img/icons/lock.png');
+}
+
+#banner .login .icon.at {
+	background-image: url('../img/icons/at.png');
+}
+
+#banner .login .title {
+	margin-bottom: 45px;
+	border-bottom: 1px solid rgba(255, 255, 255, .3);
+}
+
+#banner .login h3 {
+	padding-bottom: 8px;
+	font-family: 'Cabin', sans-serif;
+	font-weight: 600;
+	font-size: 18px;
+	font-style: italic;
+	color: #ffffff;
+	position: relative;
+	display: inline-block;
+	margin-left: 55px;
+}
+
+#banner .login h3::after {
+	content: '';
+	display: block;
+	width: 40px;
+	height: 7px;
+	background: #ffffff;
+	position: absolute;
+	bottom: -4px;
+}
+
+#banner .login label {
+	display: block;
+	margin-bottom: 15px;
+	padding-left: 10px;
+}
+
+#banner .login p {
+	font-size: 14px;
+	color: #ffffff;
+	text-align: center;
+}
+
+#banner .login a {
+	color: #04425b;
+	display: inline-block;
+	font-size: 14px;
+}
+
+#banner .login a.forgotten {
+	margin-left: 65px;
+	display: inline-block;
+}
+
+#banner .login input[type="email"],
+#banner .login input[type="password"] {
+	-webkit-appearance: none;
+	border: none;
+	outline: none;
+	font-size: 14px;
+	color: #021926;
+	height: 37px;
+	padding-left: 13px;
+	margin-left: 15px;
+	display: inline-block;
+	vertical-align: middle;
+	border-radius: 10px;
+	width: 82%;
+}
+
+#banner .login input[type="email"]::placeholder,
+#banner .login input[type="password"]::placeholder {
+	opacity: .6;
+}
+
+#banner .login input[type="submit"] {
+	background: #021926;
+	border: none;
+	color: #ffffff;
+	font-weight: 600;
+	display: block;
+	width: 330px;
+	height: 48px;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: .5s all linear;
+	margin: 30px auto;
+}
+
+#banner .login input[type="submit"]:hover {
+	background: #04425b;
+}
+
+/*
+ * MENU
+ * -------------------------------------------------------- */
+header {
+ 	height: 50px;
+ 	background: #021926;
+ 	position: relative;
+}
+
+header nav {
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+
+header nav ul {
+ 	text-align: center;
+ 	display: table-cell;
+ 	vertical-align: middle;
+}
+
+header nav ul li {
+ 	display: inline-block;
+ 	margin-right: 137px;
+}
+
+header nav ul li:last-child {
+ 	margin-right: 0;
+}
+
+header nav ul li a {
+ 	display: block;
+ 	color: #ffffff;
+ 	font-family: 'Open Sans', sans-serif;
+ 	font-weight: 600;
+ 	font-size: 18px;
+ 	transition: .4s all linear;
+}
+
+header nav ul li a:hover {
+	color: #04425b;
+}
+
+header .btn-mobile {
+	display: none;
+}
+
+header .btn-mobile .center {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+header .btn-mobile span {
+	width: 40px;
+	height: 4px;
+	background: #ffffff;
+	display: block;
+	margin-right: 15px;
+	margin-left: auto;
+	position: relative;
+	transition: .4s all linear;
+}
+
+header .btn-mobile span:nth-child(2) {
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
+
+header .btn-mobile.active span:first-child {
+	transform: rotate(-45deg);
+	top: 9px;
+}
+
+header .btn-mobile.active span:nth-child(2) {
+	opacity: 0;
+	visibility: hidden;
+}
+
+header .btn-mobile.active span:last-child {
+	transform: rotate(45deg);
+	bottom: 12px;
+}
+
+
+/*
+ * WHAT WE DO
+ * -------------------------------------------------------- */
+#what-we-do {
+	padding-top: 82px;
+	padding-bottom: 115px;
+	position: relative;
+}
+
+#what-we-do .bg {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('../img/what-we-do.jpg') right center no-repeat;
+}
+
+#what-we-do .block-text {
+	max-width: 571px;
+	margin-left: 65px;
+}
+
+#what-we-do h2 {
+	color: #04425b;
+	font-size: 72px;
+	font-family: 'Cabin', sans-serif;
+	font-weight: 700;
+	text-align: center;
+}
+
+#what-we-do .features {
+	margin-top: 70px;
+}
+
+#what-we-do .features::after {
+	content: '';
+	display: block;
+	line-height: 0;
+	font-size: 0;
+	width: 0;
+	height: 0;
+	clear: both;
+}
+
+#what-we-do .features .feature {
+	float: left;
+	width: 33.33%;
+	text-align: center;
+}
+
+#what-we-do .features .feature h3 {
+	font-family: 'Cabin', sans-serif;
+	font-size: 22px;
+	font-style: italic;
+	color: #021926;
+	margin-top: 15px;
+}
+#what-we-do .features .feature p {
+	font-size: 16px;
+	margin-top: 5px;
+}
+
+#what-we-do .icon {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 61px;
+	height: 51px;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#what-we-do .icon.engine {
+	background-image: url('../img/icons/engine.png');
+}
+
+#what-we-do .icon.people {
+	background-image: url('../img/icons/people.png');
+}
+
+#what-we-do .icon.screwdriver {
+	background-image: url('../img/icons/screwdriver.png');
+}
+
+
+/*
+ * SERVICES
+ * -------------------------------------------------------- */
+#services {
+	background: #04425b;
+	padding: 60px 0;
+	position: relative;
+}
+
+#services .mask {
+	display: none;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+}
+
+#services .columns {
+	width: 100%;
+	display: table;
+}
+
+#services .columns .column {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#services .columns .column:last-child {
+	max-width: 699px;
+	text-align: right;
+}
+
+#services h2 {
+	font-size: 78px;
+	color: #ffffff;
+	font-family: 'Cabin', sans-serif;
+}
+
+#services .navs {
+	position: relative;
+	display: inline-block;
+}
+
+#services .navs ul {
+	text-align: right;
+}
+
+#services .navs ul li {
+	display: inline-block;
+	margin-right: 25px;
+}
+
+#services .navs ul li:last-child {
+	margin-right: 0;
+}
+
+#services .navs ul li a {
+	display: block;
+	width: 214px;
+	height: 537px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border: 10px solid #ffffff;
+	border-radius: 40px;
+	position: relative;
+	overflow: hidden;
+}
+
+#services .navs ul li a::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background: url('../img/services/overlay.png') center center no-repeat;
+}
+
+#services .navs ul li.nav1 a {
+	background-image: url('../img/services/service1-big.jpg');
+	background-position: left center;
+}
+
+#services .navs ul li.nav2 a {
+	background-image: url('../img/services/service2-big.jpg');
+}
+
+#services .navs ul li.nav3 a {
+	background-image: url('../img/services/service3-big.jpg');
+	background-position: right center
+}
+
+#services .navs .services {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	opacity: 0;
+	visibility: hidden;
+	z-index: -1;
+	transition: .4s all linear;
+}
+
+#services .navs .services.active {
+	visibility: visible;
+	opacity: 1;
+	z-index: 1;
+}
+
+#services .navs .services .service {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border: 10px solid #ffffff;
+	border-radius: 40px;
+	padding-left: 45px;
+	padding-right: 45px;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	background: #ffffff;
+	opacity: 0;
+	visibility: hidden;
+	transition: .4s all linear;
+	overflow: hidden;
+}
+
+#services .navs .services .service.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+#services .navs .services .service .image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	opacity: .25;
+}
+
+#services .navs .services .service.service01 .image {
+	background-image: url('../img/services/service1-big.jpg');
+}
+
+#services .navs .services .service.service02 .image {
+	background-image: url('../img/services/service2-big.jpg');
+}
+
+#services .navs .services .service.service03 .image {
+	background-image: url('../img/services/service3-big.jpg');
+}
+
+#services .navs .services .service p {
+	position: relative;
+	color: #021926;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1.5em;
+}
+
+
+/*
+ * INVESTMENTS
+ * -------------------------------------------------------- */
+#investments {
+	padding-top: 65px;
+	padding-bottom: 60px;
+}
+
+#investments h2 {
+	font-family: 'Cabin', sans-serif;
+	font-size: 78px;
+	color: #04425b;
+	text-align: center;
+}
+
+#investments .bullets {
+	max-width: 825px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#investments .bullet {
+	position: relative;
+	padding-top: 45px;
+}
+
+#investments .bullet .number {
+	font-size: 173px;
+	line-height: 123px;
+	color: #021926;
+	opacity: .35;
+	font-family: 'Cabin', sans-serif;
+	position: absolute;
+	top: 0;
+	left: -30px;
+}
+
+#investments .bullet h3 {
+	font-family: 'Cabin', sans-serif;
+	font-size: 22px;
+	color: #021926;
+	font-style: italic;
+}
+
+#investments .bullet p {
+	color: #202020;
+}
+
+#investments .dots {
+	margin-top: 20px;
+}
+
+#investments .dots ul {
+	text-align: center;
+}
+
+#investments .dots ul li {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background: #04425b;
+	border-radius: 100%;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+/*
+ * MOBILE
+ * -------------------------------------------------------- */
+@media screen and (max-width: 1380px) {
+	body {
+		font-size: 16px;
+	}
+
+	.container {
+		max-width: 1050px;
+	}
+
+	#what-we-do {
+		padding-top: 60px;
+		padding-bottom: 95px;
+	}
+
+	#what-we-do h2 {
+		font-size: 60px;
+	}
+
+	#what-we-do .block-text {
+		margin-left: 15px;
+	}
+
+	#services h2 {
+		font-size: 65px;
+	}
+
+	#services .navs ul li a {
+		width: 164px;
+		height: 407px;
+		border-width: 6px;
+		background-size: auto 100%;
+	}
+
+	#services .navs .services .service p {
+		font-size: 16px;
+	}
+
+	#investments h2 {
+		font-size: 68px;
+	}
+}
+
+@media screen and (max-width: 1080px) {
+	.container {
+		max-width: 100%;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	#banner {
+		height: calc(100vh - 50px);
+	}
+
+	#banner .language {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	#banner .login {
+		left: 50%;
+		right: auto;
+		transform: translate(-50%, -50%);
+	}
+
+	#what-we-do .bg {
+		opacity: .25;
+	}
+
+	#what-we-do .block-text {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
+	#services h2 {
+		font-size: 55px;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	#services .columns {
+		display: block;
+	}
+
+	#services .columns .column {
+		display: block;
+	}
+
+	#services .columns .column:last-child {
+		margin-right: auto;
+		margin-left: auto;
+		text-align: center;
+	}
+
+	#investments h2 {
+		font-size: 58px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	header nav {
+		height: auto;
+		display: none;
+		position: absolute;
+		top: 100%;
+		z-index: 10;
+		background: #04425b;
+		width: 100%;
+	}
+
+	header nav ul {
+		display: block;
+		padding: 5px 0;
+	}
+
+	header nav ul li {
+		display: block;
+		margin: 0;
+	}
+
+	header nav ul li a {
+		display: block;
+		padding: 10px 0;
+	}
+
+	header nav ul li a:hover {
+		color: #000000;
+		background: #ccc;
+	}
+
+	header .btn-mobile {
+		display: table;
+		height: 100%;
+		width: 100%;
+	}
+
+	#banner {
+		height: 100vh;
+	}
+
+	#banner .login {
+		background: rgba(0, 0, 0, .5);
+	}
+
+	#banner .login a {
+		font-weight: 700;
+		color: #ffffff;
+	}
+
+	#services h2 {
+		font-size: 50px;
+	}
+
+	#services .navs ul li a {
+		width: 140px;
+		height: 350px;
+	}
+
+	#services .navs .services .service {
+		padding: 0 25px;
+	}
+
+	#services .navs .services .service p {
+		font-size: 14px;
+	}
+
+	#investments .bullets {
+		max-width: 520px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#what-we-do h2 {
+		font-size: 50px;
+	}
+
+	#services h2 {
+		font-size: 4s0px;
+	}
+
+	#services .navs {
+		display: block;
+	}
+
+	#services .navs ul {
+		text-align: center;
+	}
+
+	#services .navs ul li {
+		display: block;
+		margin-right: auto;
+		margin-bottom: 15px;
+	}
+
+	#services .navs ul li:last-child {
+		margin-bottom: 0;
+	}
+
+	#services .navs ul li a {
+		width: auto;
+		height: 180px;
+		background-size: 100% auto;
+	}
+
+	#services .navs ul li.nav1 a,
+	#services .navs ul li.nav2 a,
+	#services .navs ul li.nav3 a {
+		background-position: center top;
+	}
+
+	#services .navs .services .service {
+		padding: 0 15px;
+		text-align: justify;
+	}
+
+	#investments .bullet .number {
+		left: 50%;
+		transform: translateX(-50%);
+		font-size: 120px;
+	}
+
+	#investments h2 {
+		font-size: 48px;
+	}
+
+	#investments .bullet h3 {
+		text-align: center;
+	}
+
+	#investments .bullet p {
+		text-align: justify;
+	}
+}
+
+@media screen and (max-width: 380px) {
+	#banner .login {
+		left: 10px;
+		right: 10px;
+		width: auto;
+		transform: translateY(-50%)
+	}
+
+	#banner .login input[type="email"],
+	#banner .login input[type="password"] {
+		width: 77%;
+	}
+
+	#banner .login input[type="submit"] {
+		width: 100%;
+	}
+
+	#what-we-do .bg {
+		background-position: center bottom;
+	}
+
+	#what-we-do .features .feature {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+
+	#what-we-do .features .feature:last-child {
+		margin-bottom: 0;
+	}
+}
