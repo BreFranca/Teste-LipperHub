@@ -13,6 +13,22 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//escutando status do firebase
+firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
+		//online
+		// document.getElementById("console").innerHTML = JSON.stringify( user );
+		console.log(user);
+		$('#form-login').hide();
+		$('#usuario').show();
+		$('#usuario').find('.email').html(user.email);
+	} else {
+		// document.getElementById("console").innerHTML = 'OffLine!';
+		$('#usuario').hide();
+		$('#form-login').show();
+}
+});
+
 /*
  * LOADER
  * -------------------------------------------------------- */
@@ -103,6 +119,7 @@ function openModal() {
 
 function fecharModal() {
 	$('#modal').fadeOut();
+	$('#msg').html('');
 }
 /*
  * FORMS
@@ -119,24 +136,29 @@ function msgModal(msg) {
 	$('#msg').html(msg);
 	openModal();
 }
-// $('#form-login').submit(function(event) {
-// $('input[type="submit"]').click(function(event) {
-// 	event.preventDefault();
-// 	firebase.auth().currentUser.updatePassword('123mudar')
-// 	.then(function() {
-// 		console.log('Senha Alterada');
-// 	})
-// 	.catch(function(error) {
-// 		console.log(JSON.stringify( error ));
-// 	}); 
-// });
+
+$('#sair').click(function(event) {
+	/* Act on the event */
+	event.preventDefault();
+
+	firebase.auth().signOut()
+	.then(function() {
+		// document.getElementById("console").innerHTML = 'Logout';
+		msgModal('Logout');
+		$('#usuario').show();
+		$('#form-login').show();
+	}, function(error) {
+		// document.getElementById("console").innerHTML = JSON.stringify( error );
+		msgModal(error.message);
+	});
+});
 
 $('#form-login').submit(function(event) {
 	event.preventDefault();
 	email = $(this).find('#lemail').val();
 	pass = $(this).find('#lpass').val();
 
-	firebase.auth().signInWithEmailAndPassword('email@email.com.br', '123mudar')
+	firebase.auth().signInWithEmailAndPassword(email, pass)
 	.then(function() {
 		msgModal('Login Done');
 		$('#form-login')[0].reset();
@@ -144,7 +166,8 @@ $('#form-login').submit(function(event) {
 		$('#usuario').show();
 	}).catch(function(error) { 
 		// document.getElementById("console").innerHTML = JSON.stringify( error );
-		console.log(JSON.stringify( error ));
+		// console.log(JSON.stringify( error ));
+		msgModal(error.message);
 	});
 });
 

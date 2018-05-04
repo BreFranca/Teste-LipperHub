@@ -232,6 +232,34 @@ body.fixed-menu #banner {
 	margin-left: 55px;
 }
 
+#banner .login h4 {
+	color: #ffffff;
+	text-align: center;
+}
+
+#banner .login #usuario {
+	text-align: center;
+}
+
+#banner .login #usuario .title {
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+#banner .login #usuario a {
+	background: #ffffff;
+	color: #000000;
+	border-radius: 20px;
+	padding: 10px 15px;
+	margin-top: 20px;
+}
+
+#banner .login #usuario p {
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+
 #banner .login h3::after {
 	content: '';
 	display: block;
