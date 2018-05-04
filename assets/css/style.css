@@ -289,7 +289,10 @@ body.fixed-menu #banner {
 }
 
 #banner .login #form-register,
-#banner .login #form-password {
+#banner .login #form-password,
+#banner .login #form-login,
+#banner .login #usuario
+ {
 	display: none;
 }
 

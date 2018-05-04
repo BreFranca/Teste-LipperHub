@@ -46,7 +46,9 @@ $('.btn-mobile').click(function(event) {
 
 $('header nav ul li a').click(function(event) {
 	$('.btn-mobile').removeClass('active');
-	$('header nav').slideUp();
+	if($(window).width() < 768) {
+		$('header nav').slideUp();
+	}
 });
 
 
@@ -137,7 +139,7 @@ function msgModal(msg) {
 	openModal();
 }
 
-$('#sair').click(function(event) {
+$('#exit').click(function(event) {
 	/* Act on the event */
 	event.preventDefault();
 
