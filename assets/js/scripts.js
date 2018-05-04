@@ -13,77 +13,78 @@ var config = {
 };
 firebase.initializeApp(config);
 
-//escutando status do firebase
+//Escutando status do Firebase
+usuario = document.querySelector('#usuario');
+login = document.querySelector('#form-login');
+register = document.querySelector('#form-register');
+
 firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
-		//online
-		// document.getElementById("console").innerHTML = JSON.stringify( user );
-		console.log(user);
-		$('#form-login').hide();
-		$('#usuario').show();
+		login.classList.remove('active');
+		usuario.classList.add('active');
 		$('#usuario').find('.email').html(user.email);
 	} else {
-		// document.getElementById("console").innerHTML = 'OffLine!';
-		$('#usuario').hide();
-		$('#form-login').show();
+		usuario.classList.remove('active');
+		login.classList.add('active');
 }
 });
 
 /*
  * LOADER
  * -------------------------------------------------------- */
-$(window).on('load', function(){
-	$('#loader').fadeOut('slow');
-});
+window.onload = function() {
+	document.querySelector('#loader').classList.add('hidden');
+};
 
 /*
  * MENU MOBILE
- * -------------------------------------------------------- */
-$('.btn-mobile').click(function(event) {
-	$(this).toggleClass('active');
-	$('header nav').slideToggle();
-});
-
-$('header nav ul li a').click(function(event) {
-	$('.btn-mobile').removeClass('active');
-	if($(window).width() < 768) {
-		$('header nav').slideUp();
-	}
+ * -------------------------------------------------------- */ 
+const btn_mobile = document.querySelector('.btn-mobile');
+btn_mobile.addEventListener("click",function(){
+	this.classList.toggle('active');
+	document.querySelector('header nav').classList.toggle('active');
 });
 
 
 /*
  * TABS SERVICE
  * -------------------------------------------------------- */
+const mask = document.querySelector('.mask');
+const services = document.querySelector('.services');
+const service = document.querySelector('.service');
 $('[data-service]').click(function(event) {
 	event.preventDefault();
-	nav = $(this).attr('data-service');
-	$('.services').addClass('active');
-	$('.services .service:not(.'+ nav +')').removeClass('active');
-	$('.services .service.' + nav).addClass('active');
-	$('.mask').show();
+	nav = this.getAttribute('data-service');
+	services.classList.add('active');
+	services.querySelector('.service.' + nav).classList.add('active');
+	services.querySelector('.service:not(.'+ nav +')').classList.remove('active');
+	mask.classList.add('active');
 });
 
-$('.mask').click(function(event) {
+mask.addEventListener("click",function(){
 	closeNav();
 });
 
 function closeNav() {
-	$('.mask').hide();
-	$('.services').removeClass('active');
-	$('.services .service').removeClass('active');
+	mask.classList.remove('active');
+	services.classList.remove('active');
+	services.querySelector('.service01').classList.remove('active');
+	services.querySelector('.service02').classList.remove('active');
+	services.querySelector('.service03').classList.remove('active');
 }
 
 /*
  * FIXED MENU
  * -------------------------------------------------------- */
-$(window).on('scroll', function() {
-	var scroll = $(window).scrollTop();
+body = document.querySelector('body');
+window.addEventListener('scroll', function() {
+	var element = document.querySelector("html");
+	var scroll = element.scrollTop;
 	var banner = $('#banner').height();
 	if(scroll > banner) {
-		$('body').addClass('fixed-menu');
+		body.classList.add('fixed-menu');
 	} else {
-		$('body').removeClass('fixed-menu');
+		body.classList.remove('fixed-menu');
 	}
 });
 
@@ -92,6 +93,10 @@ $(window).on('scroll', function() {
  * -------------------------------------------------------- */
 $('header nav ul li a').click(function(e) {
 	var page = $(this).attr('href').replace('#', '/#/');
+	if($(window).width() < 768) {
+		$('.btn-mobile').removeClass('active');
+		$('header nav').slideUp();
+	}
 	if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
 		var target = $(this.hash);
 		target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -107,50 +112,48 @@ $('header nav ul li a').click(function(e) {
 /*
  * MODAL
  * -------------------------------------------------------- */
-$('.mask-modal').click(function() {
+const modal = document.querySelector('#modal');
+document.querySelector('.mask-modal').addEventListener("click",function(){
 	fecharModal();
 });
 
-$('.fechar').click(function() {
+document.querySelector('.fechar').addEventListener("click",function(){
 	fecharModal();
 });
 
 function openModal() {
-	$('#modal').fadeIn();
+	modal.classList.add('active');
 }
 
+const msg = document.querySelector('#msg');
 function fecharModal() {
-	$('#modal').fadeOut();
-	$('#msg').html('');
+	modal.classList.remove('active');
 }
 /*
  * FORMS
  * -------------------------------------------------------- */
 $('[data-form]').click(function(event) {
-	/* Act on the event */
 	event.preventDefault();
 	form = $(this).attr('data-form');
-	$('form').hide();
-	$('#form-'+form).show();
+	$('form').removeClass('active');
+	$('#form-'+form).addClass('active');
 });
 
-function msgModal(msg) {
-	$('#msg').html(msg);
+function msgModal(message) {
+	msg.innerHTML = message;
 	openModal();
 }
 
-$('#exit').click(function(event) {
-	/* Act on the event */
+document.querySelector('#exit').addEventListener("click",function(event){
 	event.preventDefault();
 
 	firebase.auth().signOut()
 	.then(function() {
-		// document.getElementById("console").innerHTML = 'Logout';
 		msgModal('Logout');
-		$('#usuario').show();
-		$('#form-login').show();
+		usuario.classList.remove('active');
+		// login.classList.add('active');
+		location.reload();
 	}, function(error) {
-		// document.getElementById("console").innerHTML = JSON.stringify( error );
 		msgModal(error.message);
 	});
 });
@@ -167,8 +170,6 @@ $('#form-login').submit(function(event) {
 		$('#form-login').hide();
 		$('#usuario').show();
 	}).catch(function(error) { 
-		// document.getElementById("console").innerHTML = JSON.stringify( error );
-		// console.log(JSON.stringify( error ));
 		msgModal(error.message);
 	});
 });
@@ -180,7 +181,6 @@ $('#form-register').submit(function(event) {
 
 	firebase.auth().createUserWithEmailAndPassword(email, pass)
 	.then(function(success){
-		// console.log(JSON.stringify( success ));
 		msgModal('User created successfully');
 		$('#form-register')[0].reset();
 		$('#form-register').hide();

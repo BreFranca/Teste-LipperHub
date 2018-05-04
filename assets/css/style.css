@@ -74,6 +74,13 @@ body.fixed-menu #banner {
 	right: 0;
 	bottom: 0;
 	z-index: 100;
+	transition: .4s all linear;
+}
+
+#loader.hidden {
+	opacity: 0;
+	visibility: hidden;
+	z-index: -1;
 }
 
 #loader .line-scale {
@@ -291,9 +298,16 @@ body.fixed-menu #banner {
 #banner .login #form-register,
 #banner .login #form-password,
 #banner .login #form-login,
-#banner .login #usuario
- {
+#banner .login #usuario {
 	display: none;
+}
+
+#banner .login #form-register.active,
+#banner .login #form-password.active,
+#banner .login #form-login.active,
+#banner .login #usuario.active
+ {
+	display: block;
 }
 
 #banner .login a.forgotten {
@@ -529,6 +543,10 @@ header .btn-mobile.active span:last-child {
 	top: 0;
 }
 
+#services .mask.active {
+	display: block;
+}
+
 #services .columns {
 	width: 100%;
 	display: table;
@@ -755,7 +773,16 @@ header .btn-mobile.active span:last-child {
 	right: 0;
 	top: 0;
 	bottom: 0;
-	display: none;
+	opacity: 0;
+	visibility: hidden;
+	z-index: -1;
+	transition: .4s all linear;
+}
+
+#modal.active {
+	z-index: 11;
+	opacity: 1;
+	visibility: visible;
 }
 
 #modal .mask-modal {
@@ -978,7 +1005,7 @@ header .btn-mobile.active span:last-child {
 	}
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 580px) {
 	#what-we-do h2 {
 		font-size: 50px;
 	}
@@ -1022,6 +1049,10 @@ header .btn-mobile.active span:last-child {
 		text-align: justify;
 	}
 
+	#services .navs .services .service .image {
+		background-size: auto 100%;
+	}
+
 	#investments .bullet .number {
 		left: 50%;
 		transform: translateX(-50%);
@@ -1038,6 +1069,12 @@ header .btn-mobile.active span:last-child {
 
 	#investments .bullet p {
 		text-align: justify;
+	}
+
+	#modal .content {
+		left: 10px;
+		right: 10px;
+		transform: translateY(-50%);
 	}
 }
 
