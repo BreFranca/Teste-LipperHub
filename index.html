@@ -17,6 +17,7 @@
 	</div>
 	</div>
 	<section id="banner">
+		<div class="bg"></div>
 		<div class="container">
 			<div class="language">
 				<ul>
@@ -26,21 +27,48 @@
 				</ul>
 			</div>
 			<div class="login">
-				<form action="#" id="form">
+				<form action="#" id="form-login">
 					<div class="title">
 						<h3>Sign In</h3>
 					</div>
 					<label for="email">
 						<span class="icon at"></span>
-						<input type="email" placeholder="Email" id="email">
+						<input type="email" placeholder="Email" id="lemail">
 					</label>
 					<label for="password">
 						<span class="icon lock"></span>
-						<input type="password" placeholder="Password">
+						<input type="password" placeholder="Password" id="lpass">
 					</label>
-					<a href="#" class="forgotten">Forgot your password?</a>
+					<a href="#" class="forgotten" data-form="password">Forgot your password?</a>
 					<input type="submit" value="Sign In">
-					<p>Don’t have an account? <a href="#">Register</a></p>
+					<p>Don’t have an account? <a href="#" data-form="register">Register</a></p>
+				</form>
+				<form action="#" id="form-register">
+					<div class="title">
+						<h3>Register</h3>
+					</div>
+					<label for="email">
+						<span class="icon at"></span>
+						<input type="email" placeholder="Email" id="remail">
+					</label>
+					<label for="password">
+						<span class="icon lock"></span>
+						<input type="password" placeholder="Password" id="rpass">
+					</label>
+					<a href="#" class="forgotten" data-form="password">Forgot your password?</a>
+					<input type="submit" value="Register">
+					<p>Don’t have an account? <a href="#" data-form="login">Enter</a></p>
+				</form>
+				<form action="#" id="form-password">
+					<div class="title">
+						<h3>Forgot Password</h3>
+					</div>
+					<label for="email">
+						<span class="icon at"></span>
+						<input type="email" placeholder="Email" id="femail">
+					</label>
+					<input type="submit" value="Send to my email">
+					<p>Don’t have an account? <a href="#" data-form="login">Enter</a></p>
 				</form>
 			</div>
 		</div>
@@ -156,6 +184,13 @@
 			</div>
 		</div>
 	</section>
+	<div id="modal">
+		<div class="mask-modal"></div>
+		<div class="content">
+			<div class="fechar">X</div>
+			<div id="msg"></div>
+		</div>
+	</div>
 	<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>

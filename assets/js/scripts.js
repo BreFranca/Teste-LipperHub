@@ -1,5 +1,8 @@
 'use-scrict';
 
+/*
+ * FIREBASE INITIALIZE CONFIGS
+ * -------------------------------------------------------- */
 var config = {
 	apiKey: "AIzaSyCT1M3Fbz4M3iN3bVoc9jnAh98OGTjQcvQ",
 	authDomain: "teste-lipperhub.firebaseapp.com",
@@ -10,10 +13,16 @@ var config = {
 };
 firebase.initializeApp(config);
 
+/*
+ * LOADER
+ * -------------------------------------------------------- */
 $(window).on('load', function(){
 	$('#loader').fadeOut('slow');
 });
 
+/*
+ * MENU MOBILE
+ * -------------------------------------------------------- */
 $('.btn-mobile').click(function(event) {
 	$(this).toggleClass('active');
 	$('header nav').slideToggle();
@@ -24,6 +33,10 @@ $('header nav ul li a').click(function(event) {
 	$('header nav').slideUp();
 });
 
+
+/*
+ * TABS SERVICE
+ * -------------------------------------------------------- */
 $('[data-service]').click(function(event) {
 	event.preventDefault();
 	nav = $(this).attr('data-service');
@@ -43,6 +56,9 @@ function closeNav() {
 	$('.services .service').removeClass('active');
 }
 
+/*
+ * FIXED MENU
+ * -------------------------------------------------------- */
 $(window).on('scroll', function() {
 	var scroll = $(window).scrollTop();
 	var banner = $('#banner').height();
@@ -53,7 +69,9 @@ $(window).on('scroll', function() {
 	}
 });
 
-
+/*
+ * ANCHOR MENU
+ * -------------------------------------------------------- */
 $('header nav ul li a').click(function(e) {
 	var page = $(this).attr('href').replace('#', '/#/');
 	if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -68,23 +86,81 @@ $('header nav ul li a').click(function(e) {
 	}
 });
 
-/**
- * Formulário de Login e Senha
- */
+/*
+ * MODAL
+ * -------------------------------------------------------- */
+$('.mask-modal').click(function() {
+	fecharModal();
+});
 
-// $('#form').submit(function(event) {
-$('input[type="submit"').click(function(event) {
+$('.fechar').click(function() {
+	fecharModal();
+});
+
+function openModal() {
+	$('#modal').fadeIn();
+}
+
+function fecharModal() {
+	$('#modal').fadeOut();
+}
+/*
+ * FORMS
+ * -------------------------------------------------------- */
+$('[data-form]').click(function(event) {
 	/* Act on the event */
 	event.preventDefault();
-	// email = $(this).find('#email');
-	// pass = $(this).find('#password');
-	email = 'bre.sfranca@gmail.com';
-	pass = '12345';
+	form = $(this).attr('data-form');
+	$('form').hide();
+	$('#form-'+form).show();
+});
 
-	firebase.auth().createUserWithEmailAndPassword(email, pass).catch(function(error) {
-		// Handle Errors here.
-		var errorCode = error.code;
-		var errorMessage = error.message;
-		// ...
+function msgModal(msg) {
+	$('#msg').html(msg);
+	openModal();
+}
+// $('#form-login').submit(function(event) {
+// $('input[type="submit"]').click(function(event) {
+// 	event.preventDefault();
+// 	firebase.auth().currentUser.updatePassword('123mudar')
+// 	.then(function() {
+// 		console.log('Senha Alterada');
+// 	})
+// 	.catch(function(error) {
+// 		console.log(JSON.stringify( error ));
+// 	}); 
+// });
+
+$('#form-login').submit(function(event) {
+	event.preventDefault();
+	email = $(this).find('#lemail').val();
+	pass = $(this).find('#lpass').val();
+
+	firebase.auth().signInWithEmailAndPassword('email@email.com.br', '123mudar')
+	.then(function() {
+		msgModal('Login Done');
+		$('#form-login')[0].reset();
+		$('#form-login').hide();
+		$('#usuario').show();
+	}).catch(function(error) { 
+		// document.getElementById("console").innerHTML = JSON.stringify( error );
+		console.log(JSON.stringify( error ));
+	});
+});
+
+$('#form-register').submit(function(event) {
+	event.preventDefault();
+	email = $(this).find('#remail').val();
+	pass = $(this).find('#rpass').val();
+
+	firebase.auth().createUserWithEmailAndPassword(email, pass)
+	.then(function(success){
+		// console.log(JSON.stringify( success ));
+		msgModal('User created successfully');
+		$('#form-register')[0].reset();
+		$('#form-register').hide();
+		$('#form-login').show();
+	}).catch(function(error) {
+		msgModal(error.message);
 	});
 });
